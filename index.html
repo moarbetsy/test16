@@ -12,8 +12,11 @@
       name="description"
       content="Full lifecycle engineering management solution, empowering cross-sea bridge construction, improving engineering quality and safety management efficiency."
     />
-    <!-- Use a non-placeholder canonical. Relative is valid and resolves to the current origin. -->
-    <link rel="canonical" href="/login" />
+
+    <!-- Canonical MUST be an absolute URL for Lighthouse -->
+    <!-- Replace example.com with your real production domain -->
+    <link rel="canonical" href="https://example.com/login" />
+
     <meta name="theme-color" content="#ffffff" />
     <meta name="color-scheme" content="light" />
 
@@ -33,7 +36,7 @@
 
     <!-- =========================================================
       Performance: preload the hero image only on desktop
-      IMPORTANT: hero is now a desktop-only CSS background (so mobile won't fetch it)
+      (hero is desktop-only CSS background to prevent mobile fetch)
     ========================================================== -->
     <link
       rel="preload"
@@ -44,28 +47,22 @@
     />
 
     <style>
-      /* =========================================================
-        Design tokens (single source of truth for colors, radius)
-      ========================================================== */
       :root {
         --bg: #ffffff;
-        --text: #0f172a;   /* slate-900 */
-        --muted: #334155;  /* slate-700 */
-        --muted-2: #475569;/* slate-600 */
-        --border: #e2e8f0; /* slate-200 */
-        --surface: #f8fafc;/* slate-50 */
+        --text: #0f172a;
+        --muted: #334155;
+        --muted-2: #475569;
+        --border: #e2e8f0;
+        --surface: #f8fafc;
         --primary: #0f172a;
         --primary-hover: #1e293b;
-        --link: #2563eb;   /* blue-600 */
+        --link: #2563eb;
         --focus: #2563eb;
         --shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
         --shadow-hover: 0 6px 20px rgba(15, 23, 42, 0.12);
         --radius: 12px;
       }
 
-      /* =========================================================
-        Global resets / baseline layout
-      ========================================================== */
       * { box-sizing: border-box; }
       html, body { height: 100%; }
 
@@ -81,9 +78,6 @@
         min-height: 100dvh;
       }
 
-      /* =========================================================
-        Accessibility: keyboard "skip to content" link
-      ========================================================== */
       .skip-link {
         position: absolute;
         left: -9999px;
@@ -98,9 +92,6 @@
       }
       .skip-link:focus { left: 12px; }
 
-      /* =========================================================
-        Accessibility: consistent focus ring across controls
-      ========================================================== */
       a:focus-visible,
       button:focus-visible,
       input:focus-visible {
@@ -108,21 +99,12 @@
         box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--focus);
       }
 
-      /* =========================================================
-        Page shell: two-column split on desktop
-      ========================================================== */
       .page {
         min-height: 100vh;
         min-height: 100dvh;
         display: flex;
       }
 
-      /* =========================================================
-        Left panel (desktop only): brand showcase
-        CHANGE: hero is a desktop-only CSS background to:
-          - prevent mobile fetching entirely
-          - keep LCP as fast text instead of a large image
-      ========================================================== */
       .brand {
         position: relative;
         display: none;
@@ -134,7 +116,6 @@
       @media (min-width: 1024px) {
         .brand { display: flex; }
 
-        /* Desktop-only hero layer */
         .brand::before {
           content: "";
           position: absolute;
@@ -154,7 +135,6 @@
         .brand::before { transition: none; }
       }
 
-      /* Overlay layers to tint + improve text readability */
       .brand__overlay1 {
         position: absolute;
         inset: 0;
@@ -172,7 +152,6 @@
         );
       }
 
-      /* Foreground content stack (headline + footer pill) */
       .brand__content {
         position: relative;
         z-index: 2;
@@ -205,7 +184,6 @@
         max-width: 520px;
       }
 
-      /* Bottom row: copyright + informational pill */
       .brand__footer {
         display: flex;
         align-items: center;
@@ -220,31 +198,6 @@
         font-weight: 560;
       }
 
-      .pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 12px;
-        border-radius: 999px;
-        border: 1px solid rgba(255,255,255,0.10);
-        background: rgba(0,0,0,0.28);
-        backdrop-filter: blur(10px);
-        color: rgba(226, 232, 240, 0.95);
-        font-size: 12px;
-        font-weight: 560;
-        white-space: nowrap;
-      }
-      .pill__icon {
-        width: 14px;
-        height: 14px;
-        color: currentColor;
-        flex: 0 0 auto;
-      }
-
-      /* =========================================================
-        Right panel: authentication form
-        - overflow:auto ensures footer never overlaps on short screens
-      ========================================================== */
       .auth {
         width: 100%;
         display: flex;
@@ -256,7 +209,6 @@
         .auth { width: 41.6667%; }
       }
 
-      /* Center the card vertically (desktop), add padding (mobile) */
       .auth__body {
         flex: 1;
         display: flex;
@@ -268,7 +220,6 @@
         .auth__body { padding: 0; }
       }
 
-      /* Form container */
       .card {
         width: 100%;
         max-width: 420px;
@@ -283,7 +234,6 @@
         letter-spacing: -0.02em;
       }
 
-      /* Main form layout */
       .form {
         margin-top: 28px;
         display: grid;
@@ -301,7 +251,6 @@
       .field { display: grid; gap: 8px; }
       .input-wrap { position: relative; }
 
-      /* Inputs reserve left padding for the inline icon */
       .input {
         width: 100%;
         appearance: none;
@@ -321,7 +270,6 @@
         box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.10);
       }
 
-      /* Inline field icons (decorative) */
       .icon {
         position: absolute;
         left: 14px;
@@ -334,7 +282,6 @@
       }
       .input:focus + .icon { color: var(--link); }
 
-      /* Row: remember me + forgot password */
       .row {
         display: flex;
         align-items: center;
@@ -342,7 +289,6 @@
         gap: 12px;
       }
 
-      /* Checkbox label group */
       .check {
         display: inline-flex;
         align-items: center;
@@ -362,7 +308,6 @@
         color: var(--muted-2);
       }
 
-      /* Text link style (keeps a11y-friendly tap target) */
       .link {
         font-size: 14px;
         font-weight: 650;
@@ -374,7 +319,6 @@
       }
       .link:hover { text-decoration: underline; }
 
-      /* Primary action button */
       .btn {
         width: 100%;
         display: inline-flex;
@@ -399,7 +343,6 @@
       }
       .btn:active { transform: scale(0.99); }
 
-      /* Divider between primary login and social buttons */
       .divider {
         position: relative;
         padding: 10px 0;
@@ -426,7 +369,6 @@
         transform: translateX(-50%);
       }
 
-      /* Social sign-in buttons (two-column grid) */
       .social {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -455,7 +397,6 @@
         border-color: #cbd5e1;
       }
 
-      /* Secondary CTA below the form */
       .muted-center {
         margin-top: 22px;
         text-align: center;
@@ -472,7 +413,6 @@
       }
       .muted-center a:hover { text-decoration: underline; }
 
-      /* Footer now participates in layout (no overlap risk) */
       .footer {
         margin-top: auto;
         text-align: center;
@@ -482,8 +422,17 @@
         font-weight: 650;
         letter-spacing: 0.02em;
       }
+      .footer a {
+        color: var(--muted);
+        font-weight: 650;
+        text-decoration: none;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .footer a:hover { text-decoration: underline; }
 
-      /* Small-screen typography + padding adjustments */
       @media (max-width: 480px) {
         .card { padding: 0 18px; }
         .title { font-size: 28px; }
@@ -495,15 +444,10 @@
     <a class="skip-link" href="#login-title">Skip to login</a>
 
     <main class="page">
-      <!-- =======================================================
-        Brand panel (desktop only)
-      ======================================================== -->
       <section class="brand" aria-label="Brand Showcase">
-        <!-- Decorative overlays -->
         <div class="brand__overlay1" aria-hidden="true"></div>
         <div class="brand__overlay2" aria-hidden="true"></div>
 
-        <!-- Foreground content -->
         <div class="brand__content">
           <div></div>
 
@@ -520,31 +464,11 @@
 
           <div class="brand__footer">
             <div class="brand__copyright">© 2026 R&amp;B Design Group. All Rights Reserved.</div>
-
-            <!-- Info pill: icon is decorative; visible text is the accessible name -->
-            <div class="pill">
-              <svg class="pill__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
-                <path
-                  d="M12 22s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                />
-              </svg>
-              <span>Run additional validators to check deeper SEO best practices.</span>
-            </div>
+            <!-- Removed the "Run additional validators..." pill text as requested -->
           </div>
         </div>
       </section>
 
-      <!-- =======================================================
-        Auth panel (always visible)
-      ======================================================== -->
       <section class="auth" aria-labelledby="login-title">
         <div class="auth__body">
           <div class="card">
@@ -639,7 +563,11 @@
           </div>
         </div>
 
-        <div class="footer">© 2026 R&amp;B Engineering Platform. All rights reserved.</div>
+        <!-- Replaced footer text as requested -->
+        <div class="footer">
+          Not registered yet?
+          <a href="/contact-admin">Sign Up</a>
+        </div>
       </section>
     </main>
   </body>
