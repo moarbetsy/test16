@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -78,6 +79,7 @@
         min-height: 100dvh;
       }
 
+      /* Skip link */
       .skip-link {
         position: absolute;
         left: -9999px;
@@ -92,6 +94,7 @@
       }
       .skip-link:focus { left: 12px; }
 
+      /* Consistent focus ring */
       a:focus-visible,
       button:focus-visible,
       input:focus-visible {
@@ -105,6 +108,7 @@
         display: flex;
       }
 
+      /* Brand panel (desktop only) */
       .brand {
         position: relative;
         display: none;
@@ -198,6 +202,7 @@
         font-weight: 560;
       }
 
+      /* Auth panel */
       .auth {
         width: 100%;
         display: flex;
@@ -216,8 +221,13 @@
         justify-content: center;
         padding: 28px 0;
       }
-      @media (min-width: 1024px) {
-        .auth__body { padding: 0; }
+
+      /* Reduce interaction-driven relayout on small screens by avoiding vertical centering */
+      @media (max-width: 1023.98px) {
+        .auth__body {
+          align-items: flex-start;
+          padding: 28px 0 16px;
+        }
       }
 
       .card {
@@ -397,6 +407,7 @@
         border-color: #cbd5e1;
       }
 
+      /* Keep the Sign Up CTA here (inside the card) */
       .muted-center {
         margin-top: 22px;
         text-align: center;
@@ -413,6 +424,7 @@
       }
       .muted-center a:hover { text-decoration: underline; }
 
+      /* Footer: static/non-interactive to avoid INP attribution on footer */
       .footer {
         margin-top: auto;
         text-align: center;
@@ -421,17 +433,8 @@
         font-size: 12px;
         font-weight: 650;
         letter-spacing: 0.02em;
+        pointer-events: none;
       }
-      .footer a {
-        color: var(--muted);
-        font-weight: 650;
-        text-decoration: none;
-        min-height: 44px;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-      }
-      .footer a:hover { text-decoration: underline; }
 
       @media (max-width: 480px) {
         .card { padding: 0 18px; }
@@ -464,7 +467,6 @@
 
           <div class="brand__footer">
             <div class="brand__copyright">© 2026 R&amp;B Design Group. All Rights Reserved.</div>
-            <!-- Removed the "Run additional validators..." pill text as requested -->
           </div>
         </div>
       </section>
@@ -556,6 +558,7 @@
               </div>
             </form>
 
+            <!-- Keep the Sign Up CTA here; remove it from the bottom footer -->
             <p class="muted-center">
               Not registered yet?
               <a href="/contact-admin">Sign Up</a>
@@ -563,12 +566,10 @@
           </div>
         </div>
 
-        <!-- Replaced footer text as requested -->
-        <div class="footer">
-          Not registered yet?
-          <a href="/contact-admin">Sign Up</a>
-        </div>
+        <!-- Bottom footer is now static (not clickable) -->
+        <div class="footer">© 2026 R&amp;B Engineering Platform. All rights reserved.</div>
       </section>
     </main>
   </body>
 </html>
+```
